@@ -1,0 +1,13 @@
+# 编译生成的文件
+*.o
+*.out
+main
+/build/
+/bin/
+
+# websocketpp 库源码（避免仓库臃肿）
+Project1/websocketpp-master/
+
+# 敏感信息
+.env
+config.json

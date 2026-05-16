@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>页面未找到 | 404</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', Helvetica, 'Noto Sans', sans-serif;
+            background: linear-gradient(145deg, #f8fafc 0%, #eef2f6 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        /* 卡片容器 – 优雅毛玻璃+细腻阴影 */
+        .error-container {
+            max-width: 680px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(2px);
+            border-radius: 2.5rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        /* 动态 404 大标题 – 现代粗体感 */
+        .error-code {
+            font-size: 8rem;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(135deg, #1e293b, #3b4b66);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            text-shadow: 2px 4px 12px rgba(0,0,0,0.05);
+        }
+
+        /* 装饰小元素 – 活泼圆点线条 */
+        .glow-badge {
+            display: inline-block;
+            background: #eef2ff;
+            backdrop-filter: blur(4px);
+            padding: 0.3rem 1rem;
+            border-radius: 60px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #2563eb;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.3px;
+            border: 1px solid rgba(37,99,235,0.2);
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            font-size: 1.05rem;
+            color: #334155;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* 趣味视觉反馈 */
+        .visual-hint {
+            margin: 1.5rem auto 2rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .hint-dot {
+            width: 12px;
+            height: 12px;
+            background: #cbd5e1;
+            border-radius: 50%;
+            animation: pulse 1.4s infinite ease-in-out;
+        }
+
+        .hint-dot:nth-child(2) { animation-delay: 0.2s; background: #94a3b8; }
+        .hint-dot:nth-child(3) { animation-delay: 0.4s; background: #64748b; }
+        .hint-dot:nth-child(4) { animation-delay: 0.6s; background: #475569; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); background: #3b82f6; }
+        }
+
+        /* 按钮组 – 支持返回首页 + 实用操作 */
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.8rem;
+            border-radius: 3rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.25s;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: #0f172a;
+            color: white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            border: 1px solid #1e293b;
+        }
+
+        .btn-primary:hover {
+            background: #1e293b;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(15,23,42,0.25);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.8);
+            color: #1e293b;
+            border: 1px solid #cbd5e1;
+            backdrop-filter: blur(4px);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            border-color: #94a3b8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+        }
+
+        /* 趣味小彩蛋 – 动态hover 显示小提示 */
+        .easter-egg {
+            margin-top: 2.5rem;
+            font-size: 0.75rem;
+            color: #6c757d;
+            border-top: 1px dashed #e2e8f0;
+            padding-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .easter-egg span {
+            cursor: default;
+            transition: 0.1s;
+        }
+
+        .easter-egg .click-hint {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            font-family: monospace;
+            font-size: 0.7rem;
+            color: #3b82f6;
+        }
+
+        /* 响应式优化 */
+        @media (max-width: 550px) {
+            .error-container {
+                padding: 1.8rem 1.2rem;
+            }
+            .error-code {
+                font-size: 5.5rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .description {
+                font-size: 0.95rem;
+            }
+            .btn {
+                padding: 0.6rem 1.4rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* 增加趣味性 – 鼠标移动光晕效果（纯装饰） */
+        .error-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .error-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(59,130,246,0.03) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <!-- 有趣的404大数字 -->
+        <div class="error-code">404</div>
+        <div class="glow-badge">
+            ⚡ 遗失的传送门 ⚡
+        </div>
+        <h1>哎呀！页面走丢了</h1>
+        <p class="description">
+            可能链接已经过时，或者页面被移动到了异次元。<br>
+            别担心，我们帮你找找回家的路。
+        </p>
+
+        <!-- 动态视觉小圆点 -->
+        <div class="visual-hint">
+            <div class="hint-dot"></div>
+            <div class="hint-dot"></div>
+            <div class="hint-dot"></div>
+            <div class="hint-dot"></div>
+        </div>
+
+        <!-- 主要操作按钮：返回首页 + 后退/刷新 -->
+        <div class="action-buttons">
+            <a href="/" class="btn btn-primary" id="homeLink">
+                🏠 返回首页
+            </a>
+            <button class="btn btn-secondary" id="goBackBtn">
+                ↩️ 上一页
+            </button>
+            <button class="btn btn-secondary" id="refreshBtn">
+                🔄 重试当前页
+            </button>
+        </div>
+
+        <!-- 小彩蛋/额外实用功能：复制当前网址或者一句安慰 -->
+        <div class="easter-egg">
+            <span>💡 小提示：</span>
+            <span class="click-hint" id="copyUrlHint">📋 复制当前网址</span>
+            <span>✨ 或者检查一下链接拼写~</span>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // 纯前端单文件404，没有依赖外部资源，所有功能集成于此。
+            // 1. 返回首页: 尝试跳转到根路径 (如果是本地文件，也会相对根路径)
+            const homeLink = document.getElementById('homeLink');
+            if (homeLink) {
+                homeLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // 优雅跳转至网站根目录（当前域名下的 '/'）
+                    window.location.href = '/';
+                });
+            }
+
+            // 2. 上一页功能: 如果存在历史记录则返回，否则给出友好提示
+            const goBackBtn = document.getElementById('goBackBtn');
+            if (goBackBtn) {
+                goBackBtn.addEventListener('click', () => {
+                    if (window.history.length > 1) {
+                        window.history.back();
+                    } else {
+                        // 没有上一页历史，就轻微提示或者重定向到首页
+                        const originalText = goBackBtn.innerHTML;
+                        goBackBtn.innerHTML = '🚪 无历史记录，返回首页';
+                        goBackBtn.disabled = true;
+                        setTimeout(() => {
+                            window.location.href = '/';
+                        }, 800);
+                        // 恢复按钮文字（但即将跳转，可忽略）
+                        setTimeout(() => {
+                            if (!goBackBtn.disabled) return;
+                            goBackBtn.innerHTML = originalText;
+                            goBackBtn.disabled = false;
+                        }, 1500);
+                    }
+                });
+            }
+
+            // 3. 重试当前页: 刷新页面，保留原地址
+            const refreshBtn = document.getElementById('refreshBtn');
+            if (refreshBtn) {
+                refreshBtn.addEventListener('click', () => {
+                    window.location.reload();
+                });
+            }
+
+            // 4. 彩蛋功能: 复制当前页面的完整URL到剪贴板
+            const copyHint = document.getElementById('copyUrlHint');
+            if (copyHint) {
+                copyHint.addEventListener('click', async () => {
+                    const currentUrl = window.location.href;
+                    try {
+                        await navigator.clipboard.writeText(currentUrl);
+                        // 临时改变文案反馈
+                        const originalText = copyHint.innerHTML;
+                        copyHint.innerHTML = '✅ 已复制！';
+                        copyHint.style.background = '#d9f0e3';
+                        copyHint.style.color = '#0f3b2c';
+                        setTimeout(() => {
+                            copyHint.innerHTML = originalText;
+                            copyHint.style.background = '#f1f5f9';
+                            copyHint.style.color = '#3b82f6';
+                        }, 1800);
+                    } catch (err) {
+                        // 降级方案: 使用传统方法复制
+                        const textarea = document.createElement('textarea');
+                        textarea.value = currentUrl;
+                        document.body.appendChild(textarea);
+                        textarea.select();
+                        const success = document.execCommand('copy');
+                        document.body.removeChild(textarea);
+                        if (success) {
+                            copyHint.innerHTML = '📋 已复制地址 (传统)';
+                        } else {
+                            copyHint.innerHTML = '❌ 复制失败，手动复制吧';
+                        }
+                        setTimeout(() => {
+                            copyHint.innerHTML = '📋 复制当前网址';
+                        }, 2000);
+                    }
+                });
+            }
+
+            // 额外增加趣味：控制台输出安慰信息
+            console.log('%c✨ 404 页面 | 你迷失在比特宇宙中，但回家的路已准备好 ✨', 'color: #3b82f6; font-size: 14px; font-weight: bold;');
+            console.log('%c💡 试试点击「复制当前网址」或「返回首页」按钮～', 'color: #4b5563; font-size: 12px;');
+
+            // 可选动态背景效果，鼠标跟随微交互提升精致感 (轻量)
+            const container = document.querySelector('.error-container');
+            if (container) {
+                container.addEventListener('mousemove', (e) => {
+                    const rect = container.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    // 仅改变一个小阴影光效跟随鼠标 增加活力，但不要过度
+                    container.style.setProperty('--mouse-x', x + 'px');
+                    container.style.setProperty('--mouse-y', y + 'px');
+                    // 动态加上一个小的高光效果(伪类模拟需要额外, 可以直接加内联渐变但为了性能: 轻微移动背景光)
+                    // 这里更优雅： 让.visual-hint的圆点临时高亮? 不需要太复杂，做一点呼吸感即可
+                });
+                // 增加自定义变量风格（可选）
+                container.style.transition = 'box-shadow 0.2s';
+            }
+        })();
+    </script>
+</body>
+</html>

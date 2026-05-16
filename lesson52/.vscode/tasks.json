@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",           // 生成调试信息
+                "-std=c++11",   // C++11标准
+                "-pthread",     // 链接pthread库
+                "main.cpp",     // 源文件
+                "-o",           // 输出文件
+                "block_queue",  // 可执行文件名
+                "-Wall",        // 显示所有警告
+                "-Wextra",      // 显示额外警告
+                "-O0"           // 关闭优化（调试必须）
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "presentation": {
+                "reveal": "always"
+            }
+        }
+    ]
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的博客</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fafafa;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            background: white;
+            padding: 48px 40px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        /* 右上角按钮区域 */
+        .auth-buttons {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 6px 16px;
+            font-size: 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            background: transparent;
+            border: 1px solid #ddd;
+            color: #555;
+        }
+
+        .btn-login {
+            background: transparent;
+            border-color: #ccc;
+        }
+
+        .btn-login:hover {
+            background: #f5f5f5;
+            border-color: #aaa;
+        }
+
+        .btn-register {
+            background: #1a1a1a;
+            border-color: #1a1a1a;
+            color: white;
+        }
+
+        .btn-register:hover {
+            background: #333;
+            border-color: #333;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 400;
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+        }
+
+        .meta {
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .post {
+            margin-bottom: 48px;
+        }
+
+        .post h2 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+
+        .post .date {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 16px;
+        }
+
+        .post p {
+            color: #444;
+            margin-bottom: 16px;
+        }
+
+        hr {
+            margin: 40px 0;
+            border: none;
+            border-top: 1px solid #eee;
+        }
+
+        .footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid #eee;
+            font-size: 13px;
+            color: #888;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 登录和注册按钮 -->
+        <div class="auth-buttons">
+            <!-- <button class="btn btn-login" onclick="alert('登录功能演示\n\n实际使用时会发送 POST 请求到 /api/login')">登录</button>
+            <button class="btn btn-register" onclick="alert('注册功能演示\n\n实际使用时会发送 POST 请求到 /api/register')">注册</button> -->
+            <a href="/login.html" class="btn btn-login">登录</a>
+            <a href="/register.html" class="btn btn-register">注册</a>
+        </div>
+
+        <h1>随笔</h1>
+        <div class="meta">记录日常想法 / 2026</div>
+
+        <div class="post">
+            <h2>关于阅读</h2>
+            <div class="date">2026年3月20日</div>
+            <p>最近在读一本关于设计的书。好的设计往往不引人注目，它 quietly 解决问题，而不是制造噪音。这让我想到写代码也是类似，简洁比复杂更难。</p>
+            <p>有时候我们习惯给简单的事情添加不必要的抽象，其实保持清晰和直接往往是最好的选择。</p>
+        </div>
+
+        <div class="post">
+            <h2>周末散步</h2>
+            <div class="date">2026年3月15日</div>
+            <p>下午去了趟公园，阳光很好。看见有人在湖边画画，有人躺在草坪上看书。慢下来的时候，才会注意到这些平常被忽略的瞬间。</p>
+            <p>生活不需要总是填满，留点空白也挺好。</p>
+        </div>
+
+        <div class="post">
+            <h2>工具与效率</h2>
+            <div class="date">2026年3月10日</div>
+            <p>试了几个新的效率工具，最后还是回到了最简单的文本编辑器。有时候不是工具不够好，而是我们花了太多时间在折腾工具本身。</p>
+            <p>真正重要的是产出，而不是用了什么 fancy 的东西。</p>
+        </div>
+
+        <div class="footer">
+            <p>© 2026 · 简单博客</p>
+        </div>
+        <div>
+            <img src="images/pic1.png" alt="">
+            <!-- <img src="images/pic2.png" alt=""> -->
+        </div>
+    </div>
+</body>
+
+</html>

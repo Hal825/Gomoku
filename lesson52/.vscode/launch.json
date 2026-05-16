@@ -1,0 +1,34 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "调试阻塞队列",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/block_queue",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,  // 关键：使用内置控制台
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",  // 指定 gdb 路径
+            "setupCommands": [
+                {
+                    "description": "启用整齐打印",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "捕获段错误",
+                    "text": "catch signal SIGSEGV"
+                },
+                {
+                    "description": "捕获总线错误",
+                    "text": "catch signal SIGBUS"
+                }
+            ],
+            "preLaunchTask": "build"
+        }
+    ]
+}
