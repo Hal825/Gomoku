@@ -1,25 +1,40 @@
 #include "../include/logger.hpp"
-#include "../include/mysql_util.hpp"
-#include "../include/json_util.hpp"
+#include "../include/user_table.hpp"
 
 int main() {
-    // 测试 JSON 序列化
-    Json::Value test;
-    test["name"] = "zhangsan";
-    test["age"] = 18;
-    test["score"].append(88.5);
-    test["score"].append(99.0);
+    // 创建 user_table 实例（注意替换密码）
+    user_table users("127.0.0.1", "root", "@Lzs0825", "online_gobang", 3306);
 
-    std::string json_str;
-    if (json_util::serialize(test, json_str)) {
-        INF_LOG("序列化成功: %s", json_str.c_str());
+    // 测试注册
+    Json::Value new_user;
+    new_user["username"] = "testuser";
+    new_user["password"] = "123456";
+    if (users.insert(new_user)) {
+        INF_LOG("注册测试成功");
+    } else {
+        ERR_LOG("注册测试失败（可能用户名已存在）");
     }
 
-    // 测试 JSON 反序列化
-    Json::Value parsed;
-    if (json_util::unserialize(json_str, parsed)) {
-        INF_LOG("反序列化成功: name=%s, age=%d", 
-                parsed["name"].asCString(), parsed["age"].asInt());
+    // 测试登录
+    Json::Value login_user;
+    login_user["username"] = "xiaobai";
+    login_user["password"] = "123";
+    if (users.login(login_user)) {
+        INF_LOG("登录测试成功: id=%lu, score=%lu, total=%d, win=%d",
+                login_user["id"].asUInt64(),
+                login_user["score"].asUInt64(),
+                login_user["total_count"].asInt(),
+                login_user["win_count"].asInt());
+    } else {
+        ERR_LOG("登录测试失败");
+    }
+
+    // 测试查询用户信息
+    Json::Value user_info;
+    if (users.select_by_name("xiaobai", user_info)) {
+        INF_LOG("查询用户成功: %s, 积分=%lu", 
+                user_info["username"].asCString(),
+                user_info["score"].asUInt64());
     }
 
     return 0;
