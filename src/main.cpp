@@ -5,7 +5,7 @@ int main() {
     // 创建 user_table 实例（注意替换密码）
     user_table users("127.0.0.1", "root", "@Lzs0825", "online_gobang", 3306);
 
-    // 测试注册
+    // ===== 测试注册 =====
     Json::Value new_user;
     new_user["username"] = "testuser";
     new_user["password"] = "123456";
@@ -15,10 +15,10 @@ int main() {
         ERR_LOG("注册测试失败（可能用户名已存在）");
     }
 
-    // 测试登录
+    // ===== 测试登录（使用刚注册的 testuser） =====
     Json::Value login_user;
-    login_user["username"] = "xiaobai";
-    login_user["password"] = "123";
+    login_user["username"] = "testuser";
+    login_user["password"] = "123456";
     if (users.login(login_user)) {
         INF_LOG("登录测试成功: id=%lu, score=%lu, total=%d, win=%d",
                 login_user["id"].asUInt64(),
@@ -29,10 +29,10 @@ int main() {
         ERR_LOG("登录测试失败");
     }
 
-    // 测试查询用户信息
+    // ===== 测试查询用户信息 =====
     Json::Value user_info;
-    if (users.select_by_name("xiaobai", user_info)) {
-        INF_LOG("查询用户成功: %s, 积分=%lu", 
+    if (users.select_by_name("testuser", user_info)) {
+        INF_LOG("查询用户成功: %s, 积分=%lu",
                 user_info["username"].asCString(),
                 user_info["score"].asUInt64());
     }

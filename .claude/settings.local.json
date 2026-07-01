@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mysql_config --cflags --libs)",
+      "Bash(pkg-config --cflags --libs mysqlclient)",
+      "Bash(pkg-config --cflags --libs jsoncpp)",
+      "Bash(dpkg -l)",
+      "Read(//usr/include/jsoncpp/**)",
+      "Read(//usr/include/**)",
+      "Bash(g++ --version)",
+      "Bash(tar *)"
+    ]
+  }
+}
